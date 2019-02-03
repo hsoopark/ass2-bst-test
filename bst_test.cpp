@@ -1244,6 +1244,62 @@ void test_emilylk() {
   	cout << "Ending test_danieljs01" << endl;
 }
 	
+void test_heespark01() {
+  cout << "\n\n* Testing test_heespark01" << endl;
+  cout << "Testing constructors, add, remove, and clear";
+  BST<string> b1;
+  BST<string> b2;
+  BST<string> b3;
+  // == and != for empty trees
+  assert(b1 == b2 && (!(b1 != b2)));
+  b1.Add("c");
+  b2.Add("c");
+  b3.Add("b");
+  // == and !- for 1-node trees b1, b2, b3
+  assert(b1 == b2 && (!(b1 != b2)));
+  assert(b1 != b3 && (!(b1 == b3)));
+
+  //copying empty tree
+  BST<string> a1;
+  BST<string> a2(a1);
+
+  //array constructor
+  string arr[] = {"a", "b", "c", "d"};
+  BST<string> a3(arr, 4);
+  cout << "a3: " << a3 << endl;
+
+  assert(a1 == a2 && (a1 != a3));
+
+  //Add nodes to tree
+  cout << "a1: " << a1 << endl;
+  a1.Add("a");
+  a1.Add("b");
+  a1.Add("c");
+  a1.Add("d");
+  cout << "a1: " << a1 << endl;
+
+  assert(a1.Contains("c"));
+  assert(!(a1.Contains("e")));
+  assert(a1.NumberOfNodes() == 4);
+  assert(a1.getHeight() == 3);
+  assert(a1 == a3);
+
+  //Clearing nodes in the tree
+  a1.Clear();
+  assert(a1.IsEmpty());
+  assert(a1.NumberOfNodes() == 0);
+  cout << "a1.Empty(): " << a1 << endl;
+
+  //Remove nodes from tree
+  BST<string> a4("c");
+  a3.Remove("a");
+  a3.Remove("b");
+  a3.Remove("d");
+  assert(a3 == a4);
+
+  cout << "Done test_heespark01" << endl;
+}
+	
 // Calling all test functions
 void testBSTAll() {
   test_pisan01();
@@ -1281,6 +1337,7 @@ void testBSTAll() {
   test_emilylk();
   test_leeh54();
   test_danieljs01();
+  test_heespark01();
 }
 
 TEST_CASE("BST Tests") {
